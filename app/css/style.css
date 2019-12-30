@@ -1,0 +1,137 @@
+*{
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+.fa-question-circle{
+    font-size: 5vh;
+    color: #f57f17;
+}
+
+#play{
+    margin-top: 5vh;
+    
+}
+
+.fa-play{
+    font-size: 5vh;
+    color: #388e3c;
+}
+
+.illustration {
+    display:block;
+    margin-bottom:50px;
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+      
+}
+
+
+.textInfo {
+   padding-left : 30%  ;
+   padding-right : 30%  ;  
+   font-size: 1.2rem;
+   line-height: 2.2rem;
+   margin-bottom: 100px;
+    color:#666666;
+}
+
+@media (max-width:768px){
+    .textInfo {
+        width:100%;
+        padding: 10%;
+        margin:0;
+        font-size : 1rem;
+        line-height : 1.5rem;
+    }
+    
+h1 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: left; 
+}
+   
+}
+
+/* W1 */
+#nueva{
+    padding-top: 5vh;
+}
+
+.nuevaSimulacion:hover{
+    background-color: #e0e0e0;
+
+}
+
+.fa-plus-circle{
+    font-size: 5vh;
+    color: #388e3c;
+}
+.textoNuevo{
+    padding-top: 1vh;
+}
+.division{
+    border: 1px solid #388e3c;
+}
+
+.colorTabla{
+    background: #81c784;
+}
+.fa-trash{
+    color: #e53935;
+}
+
+/* W2 */
+#titulo{
+    margin-top: 10vh;
+}
+
+.fa-check-circle, .fa-cog, .icono{
+    color: #388e3c;
+    font-size: 8vh;
+}
+
+.formulario{
+    margin-top: 10vh;
+}
+.textoInformativo{
+    color: grey;
+}
+
+/* W2 */
+.formulario2{
+    margin-top: 10vh;
+    font-size: 3vh;
+}
+input[type=checkbox] {
+    transform: scale(1.5);
+    margin-top: 2vh;
+  }
+
+.fa-chevron-circle-left ,.fa-chevron-circle-right{
+    font-size: 6vh;
+    color: #388e3c;
+}
+
+
+/* w7 */
+
+
+
+input[type=radio] {
+    transform: scale(1.5);
+    margin-top: 2vh;
+  }
+
+
+a {
+    text-decoration: none;
+    color:black
+}
+
+.copyright {
+    font-size :  12px ;
+    color : dimgrey;
+}

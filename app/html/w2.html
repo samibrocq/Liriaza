@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- css -->
+    <link rel="stylesheet" href="../css/Bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/f9136cac43.js" crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+
+    <title>App</title>
+</head>
+
+<body>
+    <section id="nueva">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-12">
+                    <h2>Nueva simulación</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="titulo">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h3>Título</h3>
+                    <form action="">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="textoTitulo">
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row justify-content-between">
+                <div class="col-3">
+                    <a href="w1.html"><i class="fas fa-chevron-circle-left"></i></a>
+
+
+                </div>
+                <div class="col-3 text-right">
+                    <a href="w3.html" id="guardarTitulo"><i class="fas fa-chevron-circle-right"></i></a>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <script src="../js/JQuery/jquery-3.3.1.min.js"></script>
+    <script src="../js/Bootstrap/bootstrap.min.js"></script>
+    <script src="../js/Bootstrap/bootstrap.bundle.js"></script>
+    <script src="../js/main.js"></script>
+
+    <script>
+        miStorage = window.localStorage;
+        var botonGuardarTitulo = document.getElementById('guardarTitulo');
+
+        botonGuardarTitulo.addEventListener('click', function () {
+
+            var textito = document.getElementById('textoTitulo').value;
+
+
+
+            localStorage.setItem('titulo', textito);
+
+
+
+        })
+    </script>
+</body>
+
+</html>

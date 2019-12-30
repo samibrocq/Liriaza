@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- css -->
+    <link rel="stylesheet" href="../css/Bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/f9136cac43.js" crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+
+    <title>App</title>
+</head>
+
+<body>
+
+    <section id="titulo">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 ">
+                    <h3 class="text-center">Resultados generales
+
+
+                    </h3>
+                    <form action="" class="formulario">
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-5 col-form-label">Superficie
+                                    de la planta</label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="superficie" disabled>
+                            </div>
+                            <label for="staticEmail" class="col-2 col-form-label">m²</label>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-5 col-form-label">Inversión inicial </label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="inversion" disabled>
+                            </div>
+                            <label for="staticEmail" class="col-2 col-form-label">$ MXN
+                                </label>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-5 col-form-label">Ganancia anual </label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="ganancia" disabled>
+                            </div>
+                            <label for="staticEmail" class="col-2 col-form-label">$ MXN</label>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-5 col-form-label">Trabajadores
+                                    necesarios </label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="trabajadores" disabled>
+                            </div>
+                         
+                        </div>
+                        <div class="form-group row">
+                                <label for="staticEmail" class="col-5 col-form-label">Ganancia por
+                                        persona </label>
+                                <div class="col-4">
+                                    <input type="text" class="form-control" id="gananciaPersona" disabled>
+                                </div>
+                                <label for="staticEmail" class="col-2 col-form-label">$ MXN /mes /persona</label>
+                               
+                            </div>
+                    </form>
+                </div>
+            </div>
+
+
+            <div class="row justify-content-between">
+                <div class="col-3">
+                    <a href="w8.html"> <i class="fas fa-chevron-circle-left"></i></a>
+
+
+                </div>
+                <div class="col-3 text-right">
+                    <a href="w10.html" id="guardarPrecio"><i class="fas fa-chevron-circle-right"></i></a>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <script src="../js/JQuery/jquery-3.3.1.min.js"></script>
+    <script src="../js/Bootstrap/bootstrap.min.js"></script>
+    <script src="../js/Bootstrap/bootstrap.bundle.js"></script>
+    <script src="../js/main.js"></script>
+
+    <script>
+
+       
+        //*******************
+        //Calculos Intermediarios
+        //*******************
+       
+        // var lombricomposta = {
+        //     cantidadTratadaLombri: 100,
+        //     //Etapa 1:
+        //     // volumenPrecomposteado: (lombricomposta.densidad)
+        // }
+
+        //*******************
+        //Lombricomposta
+        //******************
+        
+        var cantidadLirio = localStorage.getItem('cantidadLirio');
+
+        var porcentajeLombri = (localStorage.getItem('porcentaje1')/100);
+        
+        var cantidadTratadaLombri = (cantidadLirio * porcentajeLombri)  , 
+        
+        //Etapa 1:Precomposteo
+        volumenPrecomposteado=  (cantidadTratadaLombri / lombricomposta.densidadLirio),
+        
+        nuCajasTarimas = Math.ceil(cantidadTratadaLombri/300)*3,
+        superficieNecesaria = nuCajasTarimas*2,
+
+        //Etapa 2:
+
+        cantidadEntrantehebdo = cantidadTratadaLombri*lombricomposta.masaFinalPreCompost,
+        volumenCorrespondiente = cantidadEntrantehebdo/lombricomposta.densidadCompost,
+        superficieLombricomposteo = (volumenCorrespondiente/0.15)*6,
+        produccionLombri80 = cantidadEntrantehebdo*4,
+        volumenCorrespondiente2 = produccionLombri80/lombricomposta.densidadCompost,
+
+        //Etapa 3
+        superficieSecadoUtil = 2,
+        produccionDeLombri30 = produccionLombri80 * lombricomposta.masaFinalCompost;
+        
+       
+        
+        //*******************
+        //Secado
+        //******************
+
+        var cantidadLirio = localStorage.getItem('cantidadLirio');
+
+        var porcentajeSecado = (localStorage.getItem('porcentaje3')/100);
+
+
+        var cantidadMateriaSecar = (cantidadLirio * porcentajeSecado) ,
+        superficieEstanterias= cantidadMateriaSecar/secado.densidadPromedioLirio,
+        superficieSueloNecesario = (superficieEstanterias*2)/2,
+        produccionMateriaSeca = cantidadMateriaSecar * secado.masaFinalInicial*4;
+
+             
+        
+        //*******************
+        // Biogás
+        //*******************
+        
+        var porcentajeBiogas = (localStorage.getItem('porcentaje4')*1)/100;
+
+        var 
+            masaLirio = cantidadLirio * porcentajeBiogas ,
+            volumenJugo =  masaLirio*0.8,
+            masaBagazo = masaLirio*0.2,
+            volumenRHALE = (masaLirio* biogas.capacidadRHALE)/5,
+            volumenUASB = (masaLirio* biogas.capacidadUASB)/5,
+            produccionMensualGas = (volumenUASB*biogas.rendimientoUASB*30)/1000,
+            produccionMensualEnergia = produccionMensualGas*biogas.capacidadCalorificaBiogas;
+
+        
+        
+        
+        //*******************
+        // Composta
+        //*******************
+        var porcentajeComposta = (localStorage.getItem('porcentaje2')*1)/100;
+
+        var cantidadLirioFresco = cantidadLirio * porcentajeComposta,
+        volumenComposta =  cantidadLirioFresco/composta.densidadLirioPicado,
+        numeroUnidadesNecesarias = cantidadLirioFresco/300,
+        nComposterosNecesarios = numeroUnidadesNecesarias*6,
+        produccionMas = (cantidadLirioFresco*4)*composta.masaFinalInicial,
+        volumenMasa = produccionMas/composta.densidadCompostHum;
+
+        
+        
+        //**********************
+        //RESULTADOS DETALLADOS
+        //**********************
+        
+        
+
+        var producto1 = localStorage.getItem('producto1');
+        var producto2 = localStorage.getItem('producto2');
+        var producto3 = localStorage.getItem('producto3');
+        var producto4 = localStorage.getItem('producto4');
+        var metodo1   = localStorage.getItem('metodo1');
+         var metodo2  = localStorage.getItem('metodo2');
+        var metodoVentaSecado1 = localStorage.getItem('metodoVentaSecado1');
+         var metodoVentaSecado2 = localStorage.getItem('metodoVentaSecado2');
+
+        var triturado = general.espacioTrituracion;
+        
+        
+       //**********************
+        //SUPERFICIES
+        //**********************
+
+        //Lombricomposta
+        
+         var precomposteros = 0,
+         lombricomposteros = 0,
+         secadoTamiz = 0;
+        
+
+          if (producto1=="true") {
+              
+              precomposteros = superficieNecesaria;
+              lombricomposteros = superficieLombricomposteo;
+              secadoTamiz = superficieSecadoUtil;
+          }
+
+        //Secado
+        var secadoTotal = 0;
+
+          if(producto2=="true"){
+              secadoTotal= superficieSueloNecesario;
+          }
+
+        //Biogás
+
+        var extractor = 0,
+            reactores = 0,
+            almacenamiento = 0;
+
+            if (producto3=="true") {
+                extractor = 5;
+                reactores = ((( ( (volumenRHALE / 1000) / 2) + ( (volumenUASB /1000) /2) ) * 2) + 4);
+                almacenamiento = produccionMensualGas / 2;
+            }
+         
+        // Composta 
+
+        var composteros = 0;
+
+        if (producto4=="true") {
+            composteros = nComposterosNecesarios * 2;
+        }
+
+
+        var totalUtil = triturado + precomposteros + lombricomposteros + secadoTamiz + secadoTotal + extractor + reactores + almacenamiento + composteros,
+            totalSuperficies = totalUtil*2;
+
+
+        //************************
+        //INVERSION
+        //***************************
+
+        
+         //General
+        
+        var cantidadmolino = 0;
+        if (metodo2==true) {
+            cantidadmolino=1;
+        }
+        var precioTotalMolino = general.precioMolino * cantidadmolino;
+
+        
+        // Lombricomposteo       
+        var cantidadPrecomposteo = 0,
+        cantidadLombricomposteros = 0,
+        cantidadTamiz = 0;
+
+
+        if (producto1=="true") {
+            cantidadPrecomposteo = nuCajasTarimas;
+            cantidadLombricomposteros = superficieLombricomposteo;
+            cantidadTamiz = superficieSecadoUtil;
+            
+        }
+        
+            var precioTotalPrecomposteros = lombricomposta.precioCajaPrecomposteo * cantidadPrecomposteo,
+            precioTotalLombricomposteros = lombricomposta.precioLombricompostero * cantidadLombricomposteros,
+            precioTotalTamiz = lombricomposta.precioTamiz * cantidadTamiz;
+
+        
+        // Secado
+        var cantidadSecador = 0;
+
+        if (producto2=="true") {            
+            cantidadSecador = superficieSueloNecesario;
+        }
+        
+        var precioTotalSecador = secado.precioInvernaderoCharola * cantidadSecador;
+        var cantidadMolinosFinos = 0;
+        if (metodoVentaSecado1 == "true" ) {
+            cantidadMolinosFinos = 1 ;
+        }
+        var precioMolinoFino = secado.precioMolinoFino * cantidadMolinosFinos;
+
+
+        // Biogás
+        var cantidadBiogas = 0;
+
+        if (producto3=="true") {
+            cantidadBiogas = 1;
+        }
+        
+        var precioTotalExtractor = biogas.precioExtractorJugo * cantidadBiogas;
+
+        var precioTotalReactores = (biogas.precioRactorRHALE + biogas.precioReactorUASB) * cantidadBiogas;
+
+        var precioTotalBolsa = biogas.precioBolsaAlmacenamiento * cantidadBiogas;
+
+        var precioTotalCarpa = biogas.percioCarpaParedes * cantidadBiogas;
+        
+        //Composta
+        var cantidadComposta = 0;
+
+        if (producto4=="true") {
+            cantidadComposta = nComposterosNecesarios;
+        }
+
+        var precioTotalCajasTarima = composta.precioCajaTarimas * cantidadComposta;
+
+        var totalTotal = precioTotalMolino + precioTotalPrecomposteros + precioTotalLombricomposteros + precioTotalTamiz +precioTotalSecador + precioMolinoFino + precioTotalExtractor +precioTotalReactores + precioTotalBolsa + precioTotalCarpa + precioTotalCajasTarima;
+       
+        
+
+
+
+        //**************************
+        //GANANCIAS
+        //*******************************
+
+
+        var precioLombri = localStorage.getItem('precioLombri');  
+        var precioSecado = localStorage.getItem('precioSecado');
+        var precioBiogas = localStorage.getItem('precioBiogas');
+        var precioComposta = localStorage.getItem('precioComposta');
+
+     
+        
+        var produccionAnualLombri1 = 0;
+        var produccionAnualLombri2 = 0;
+
+        if (producto1=="true") {
+            produccionAnualLombri1 = produccionDeLombri30 * 6;
+            produccionAnualLombri2 = produccionDeLombri30 * 12;
+        }
+
+        var produccionAnualSecado1 = 0;
+        var produccionAnualSecado2 = 0;
+
+        if (producto2=="true") {
+            produccionAnualSecado1 = produccionMateriaSeca * 12;
+            produccionAnualSecado2 = produccionMateriaSeca * 12;
+        }
+
+        var produccionAnualBiogas1 = 0;
+        var produccionAnualBiogas2 = 0;
+
+        if (producto3=="true") {
+            produccionAnualBiogas1 = produccionMensualEnergia * 12;
+            produccionAnualBiogas2 = produccionMensualEnergia * 12;
+        }
+        var produccionAnualComposta1 = 0;
+        var produccionAnualComposta2 = 0;
+
+        if (producto4=="true") {
+            produccionAnualComposta1 = produccionMas*9;
+            produccionAnualComposta2 = produccionMas*12;
+        }
+
+
+        //Primer año
+        var gananciaAnualLombri1 = produccionAnualLombri1 * precioLombri;
+        var gananciaAnualSecado1 = produccionAnualSecado1 * precioSecado;
+        var gananciaAnualBiogas1 = produccionAnualBiogas1 * precioBiogas;
+        var gananciaAnualComposta1 = produccionAnualComposta1 * precioComposta;
+
+
+        var totalGananciasUno = gananciaAnualLombri1 + gananciaAnualSecado1 + gananciaAnualBiogas1 + gananciaAnualComposta1;
+        
+        //Segundo año
+
+        var gananciaAnualLombri2 = produccionAnualLombri2 * precioLombri;
+        var gananciaAnualSecado2 = produccionAnualSecado2 * precioSecado;
+        var gananciaAnualBiogas2 = produccionAnualBiogas2 * precioBiogas;
+        var gananciaAnualComposta2 = produccionAnualComposta2 * precioComposta;
+
+
+        var totalGanancias2= gananciaAnualLombri2 + gananciaAnualSecado2 + gananciaAnualBiogas2 + gananciaAnualComposta2;
+        
+
+        //Tiempos de trabajo semanales
+
+
+        //General
+        var tiempoCosecha = (cantidadLirio / general.rendimientoCosecha) ;
+        var triturado = 0;
+        
+        if (metodo1=="true") {
+                triturado = ((1/general.ritmoTrituracion)*cantidadLirio);
+            }
+        
+        else{
+                triturado = ((1/general.rendimientoTrituradora)*cantidadLirio);
+            }
+
+            
+
+        //Lombricomposteo
+
+        var formarPreComposteros = 0,
+            removerPreComposteros = 0,
+            alimentarlombriComposteros = 0,
+            secar = 0,
+            tamizar = 0;
+
+        if  (producto1 == "true") {
+            formarPreComposteros = ((lombricomposta.rellenarPreComposteros * volumenPrecomposteado) / 60) * 1;
+            
+            removerPreComposteros = (((lombricomposta.voltearPreComposteros * volumenPrecomposteado * 2) / 3) / 60) * 1;
+            
+            alimentarlombriComposteros = (((lombricomposta.rellenarLomvricomposteros * volumenCorrespondiente )/3)/60) * 1;
+            
+            secar = (((lombricomposta.ponerSecar * volumenCorrespondiente2) / 4) / 60) * 1;
+            
+            tamizar = (((lombricomposta.tamizar * produccionDeLombri30) / 4) / 60) * 1;
+        }
+            
+        //Secado
+
+        var llenarSecador = 0,
+            sacarLaMateriaSeca = 0;
+
+        if(producto2 == "true"){
+            llenarSecador = (1 / secado.llenarSecador *  cantidadMateriaSecar) * 1;
+            
+            sacarLaMateriaSeca = ((1 / secado.sacarLaMateriaSeca) * (produccionMateriaSeca/4)) * 1;
+        } 
+
+
+        //Biogás
+
+        var extraerJugo = 0,
+            alimentarUASB = 0,
+            alimentarRHALE = 0;
+
+        if (producto3=="true") {
+
+            extraerJugo = biogas.extaccionJugo * masaLirio/60 * 1;
+            
+            alimentarUASB = biogas.alimentarUASB * 5 / 60 * 1;
+            
+            alimentarRHALE = biogas.alimentarRHALE * 5 /60 * 1 ;
+            
+        }
+
+        //Composta
+
+        var alimentarComposteros = 0,
+            voltear = 0,
+            ponerASecar = 0,
+            tamizarComposta = 0;
+
+
+        if (producto4=="true"){
+            alimentarComposteros = (composta.alimentarComposteros * ( volumenComposta / 60)) * 1;
+            
+            voltear = (composta.voltear * volumenComposta * ((0.6 + 0.3 + 0.25) / 60)) * 1;  
+            
+            ponerASecar = (composta.ponerSecar * (volumenMasa / 4) / 60) * 1;
+            
+            tamizarComposta = (composta.tamizar * (produccionMas / 4) / 60) * 1;
+            
+        }
+
+        
+   
+
+            var totalTiemposDeTrabajoSemanales = 2*( tiempoCosecha + triturado +formarPreComposteros + removerPreComposteros+ alimentarlombriComposteros + secar + tamizar + llenarSecador  +sacarLaMateriaSeca + extraerJugo+alimentarUASB +alimentarRHALE +alimentarComposteros +voltear +ponerASecar + tamizarComposta );
+            
+            var personasNecesarias = Math.ceil(totalTiemposDeTrabajoSemanales / 35);
+
+
+
+
+
+        //Pintar etiquetas resultados generales
+
+        var superficie = document.getElementById('superficie');
+        var inversionInicial = document.getElementById('inversion');
+        var ganancia = document.getElementById('ganancia');
+        var trabajadores = document.getElementById('trabajadores');
+        var gananciaPersona = document.getElementById('gananciaPersona');
+
+        superficie.value = Math.round(totalSuperficies);
+        inversionInicial.value = separ_milliers(Math.round(totalTotal));
+        
+        ganancia.value = separ_milliers(Math.round(totalGanancias2));
+        
+        trabajadores.value = Math.round(personasNecesarias);
+        gananciaPersona.value = separ_milliers(Math.round(totalGanancias2 / personasNecesarias / 12));
+        
+        function separ_milliers(nbr) { var nombre = ''+nbr; var retour = ''; var count=0; for(var i=nombre.length-1 ; i>=0 ; i--) { if(count!=0 && count % 3 == 0) retour = nombre[i]+' '+retour ; else retour = nombre[i]+retour ; count++; } ; return retour; }
+
+
+
+
+
+        // miStorage = window.localStorage;
+        // var guardarPrecio = document.getElementById('guardarPrecio');
+
+        // guardarPrecio.addEventListener('click', function () {
+
+        //     var precio1 = document.getElementById('precioLirio').value;
+        //     var precio2 = document.getElementById('precioComposta').value;
+        //     var precio3 = document.getElementById('precioSecado').value;
+        //     var precio4 = document.getElementById('precioBiogas').value;
+
+
+
+
+
+        //     localStorage.setItem('precio1', precio1);
+        //     localStorage.setItem('precio2', precio2);
+        //     localStorage.setItem('precio3', precio3);
+        //     localStorage.setItem('precio4', precio4);
+
+
+
+        // })
+    </script>
+</body>
+
+</html>
