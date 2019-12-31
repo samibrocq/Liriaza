@@ -1093,8 +1093,9 @@ iframe {
     margin-bottom:150px; 
 }
 
-iframe.pdf {
-    max-width:100%;
+.pdf {
+    max-width:90%;
+    margin: 0 5% 0 5%;
   
 }
 
