@@ -574,7 +574,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .section-header .section-description {
   text-align: center;
-  padding-top:30px;
+  padding-top:20px;
   color: #999;
   font-size:18px;
 }
@@ -977,7 +977,6 @@ body.mobile-nav-active #mobile-nav-toggle {
     .rowInfo{
         flex-direction: column;
         margin:auto;
-      
     }
     
     .textInfoRight, .textInfoLeft {
@@ -1000,17 +999,17 @@ body.mobile-nav-active #mobile-nav-toggle {
     }
     
     .centeredImage {
-        margin-bottom:0px;
-        width:100%;
+        margin-bottom:20px;
+        width:95%;
     }
     
     .frameInfo {
         margin-bottom:0px;
     
+    }
+
+   
 }
-
-
-
 
 /* Composta, lombri, biogas y secado Sections
 --------------------------------*/
@@ -1059,7 +1058,7 @@ ul li {
 
 .illustration {
     max-width : 100%;
-    margin-bottom:50px;
+    margin-bottom:0px;
     border-radius: 15px;
       
 }
@@ -1070,6 +1069,11 @@ ul li {
     margin-left:auto;
     margin-right: auto;
     margin-bottom:150px;    
+}
+
+figure{
+    padding:0;
+    margin: 30px 0 30px 0; 
 }
 
 figcaption {
@@ -1094,12 +1098,14 @@ iframe.pdf {
   
 }
 
+figure {}
+
 
 
 @media (max-width:768px){
     .textInfo {
         width:100%;
-        padding: 10%;
+        padding: 0 10% 5% 10%;
         margin:0;
         font-size : 1rem;
         line-height : 1.5rem;
@@ -1110,14 +1116,23 @@ iframe.pdf {
         line-height : 1.5rem;
         width:50%;
         margin-left:30%;
+        margin-bottom: 50px;
         height:150px;
+        
     }
     
     iframe {
         max-width: 90%;
+        margin-bottom:32px;
     }
     
+    figcaption {
+        font-size:1rem;
+    }
     
+     .logo_big{
+        margin-bottom:30px;
+    }
 }
 
 
