@@ -574,9 +574,9 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .section-header .section-description {
   text-align: center;
-  padding-bottom: 30px;
+  padding-top:30px;
   color: #999;
-    font-size:18px;
+  font-size:18px;
 }
 
 /* About Us Section
@@ -853,7 +853,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 #simulador {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/lirio6.jpg) fixed center center;
   background-size: cover;
-  padding: 150px 20px 50px 20px;
+  padding: 150px 15px 50px 15px;
 }
 
 #simulador .cta-title {
@@ -991,7 +991,7 @@ body.mobile-nav-active #mobile-nav-toggle {
         width : 100%; 
         padding-left : 0%  ;
         padding-right : 0%  ;
-        margin-bottom:50px;
+        margin-bottom:10px;
         
     }
     
@@ -1000,9 +1000,12 @@ body.mobile-nav-active #mobile-nav-toggle {
     }
     
     .centeredImage {
-        margin-bottom:50px;
+        margin-bottom:0px;
         width:100%;
     }
+    
+    .frameInfo {
+        margin-bottom:0px;
     
 }
 
