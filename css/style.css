@@ -287,6 +287,23 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.btn-ellipse {
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: block;
+  width: 40%;
+  text-align: center;
+  padding: 8px 28px;
+  border-radius: 50px;
+  transition: 0.5s;
+  margin: 100px auto 0;
+  border: 2px solid black;
+  color: black;
+}
+
 #hero .btn-get-started {
   font-family: "Poppins", sans-serif;
   text-transform: uppercase;
@@ -306,6 +323,9 @@ h1, h2, h3, h4, h5, h6 {
   background: #2d832d;
   border: 2px solid #2d832d;
 }
+
+
+
 
 /*--------------------------------------------------------------
 # Navigation Menu
@@ -1095,12 +1115,9 @@ iframe {
 
 .pdf {
     max-width:90%;
-    margin: 0 5% 0 5%;
+    margin: 0 5% 100px 5%;
   
 }
-
-figure {}
-
 
 
 @media (max-width:768px){
@@ -1142,6 +1159,16 @@ figure {}
 #contact {
   background: #f7f7f7;
   padding: 80px 20px 40px 20px;
+}
+
+#contact .form {
+    width:600;
+    margin: 0 20% 100px;
+}
+
+#contact .mailadress {
+    margin:0 auto 50px;
+    text-align: center;
 }
 
 #contact #google-map {
@@ -1242,6 +1269,13 @@ figure {}
 #contact .form button[type="submit"]:hover {
   background: #51d8ad;
 }
+
+/* .contactinfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} */
+
 
 /*--------------------------------------------------------------
 # Footer
