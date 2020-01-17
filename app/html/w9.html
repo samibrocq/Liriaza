@@ -30,6 +30,7 @@
 
                     </h3>
                     <form action="" class="formulario">
+                        
                         <div class="form-group row">
                             <label for="staticEmail" class="col-5 col-form-label">Superficie
                                     de la planta</label>
@@ -38,6 +39,8 @@
                             </div>
                             <label for="staticEmail" class="col-2 col-form-label">m²</label>
                         </div>
+                        
+                        
                         <div class="form-group row">
                             <label for="staticEmail" class="col-5 col-form-label">Inversión inicial </label>
                             <div class="col-4">
@@ -46,6 +49,8 @@
                             <label for="staticEmail" class="col-2 col-form-label">$ MXN
                                 </label>
                         </div>
+                        
+                        
                         <div class="form-group row">
                             <label for="staticEmail" class="col-5 col-form-label">Ganancia anual </label>
                             <div class="col-4">
@@ -53,6 +58,8 @@
                             </div>
                             <label for="staticEmail" class="col-2 col-form-label">$ MXN</label>
                         </div>
+                        
+                        
                         <div class="form-group row">
                             <label for="staticEmail" class="col-5 col-form-label">Trabajadores
                                     necesarios </label>
@@ -61,6 +68,8 @@
                             </div>
                          
                         </div>
+                        
+                        
                         <div class="form-group row">
                                 <label for="staticEmail" class="col-5 col-form-label">Ganancia por
                                         persona </label>
@@ -69,7 +78,40 @@
                                 </div>
                                 <label for="staticEmail" class="col-2 col-form-label">$ MXN /mes /persona</label>
                                
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-5 col-form-label">Producción lombricomposta (30% humedad)</label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="prodLombri" disabled>
                             </div>
+                            <label for="staticEmail" class="col-2 col-form-label">kg/mes</label>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-5 col-form-label">Producción secado (10% humedad)</label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="prodSecado" disabled>
+                            </div>
+                            <label for="staticEmail" class="col-2 col-form-label">kg/mes</label>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-5 col-form-label">Producción energía biogás</label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="prodEnergia" disabled>
+                            </div>
+                            <label for="staticEmail" class="col-2 col-form-label">kWh/mes</label>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-5 col-form-label">Producción composta (30% humedad)</label>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="prodComposta" disabled>
+                            </div>
+                            <label for="staticEmail" class="col-2 col-form-label">kg/mes</label>
+                        </div>
+                        
                     </form>
                 </div>
             </div>
@@ -501,6 +543,10 @@
         var ganancia = document.getElementById('ganancia');
         var trabajadores = document.getElementById('trabajadores');
         var gananciaPersona = document.getElementById('gananciaPersona');
+        var prodLombri = document.getElementById('prodLombri');
+        var prodSecado = document.getElementById('prodSecado'); 
+        var prodEnergia = document.getElementById('prodEnergia');
+        var prodComposta = document.getElementById('prodComposta');
 
         superficie.value = Math.round(totalSuperficies);
         inversionInicial.value = separ_milliers(Math.round(totalTotal));
@@ -508,7 +554,16 @@
         ganancia.value = separ_milliers(Math.round(totalGanancias2));
         
         trabajadores.value = Math.round(personasNecesarias);
+        
         gananciaPersona.value = separ_milliers(Math.round(totalGanancias2 / personasNecesarias / 12));
+        
+        prodLombri.value = produccionDeLombri30;
+        
+        prodSecado.value =  produccionMateriaSeca ;
+        
+        prodEnergia.value =  produccionMensualEnergia;
+        
+        prodComposta.value =  produccionMas;
         
         function separ_milliers(nbr) { var nombre = ''+nbr; var retour = ''; var count=0; for(var i=nombre.length-1 ; i>=0 ; i--) { if(count!=0 && count % 3 == 0) retour = nombre[i]+' '+retour ; else retour = nombre[i]+retour ; count++; } ; return retour; }
 
