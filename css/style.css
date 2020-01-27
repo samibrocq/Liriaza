@@ -931,14 +931,18 @@ body.mobile-nav-active #mobile-nav-toggle {
 .imageInfo {
       width:100%;
       border-radius: 40px;
-  
-
       }
-.textInfo a {
+
+.textInfo a , .textInfoRight a , .textInfoLeft a {
   color:inherit;
-  text-decoration: underline
+  text-decoration: underline;
+  font-style:none;
 }
 
+.textInfo a:hover, .textInfoRight a:hover , textInfoLeft a:hover {
+     font-weight:bold;
+    }
+    
 .textInfoLeft {
    width : 90%;
    padding-left : 10%  ;
@@ -1088,7 +1092,7 @@ ul li {
     display:block;
     margin-left:auto;
     margin-right: auto;
-    margin-bottom:150px;    
+    margin-bottom:50px;    
 }
 
 figure{
