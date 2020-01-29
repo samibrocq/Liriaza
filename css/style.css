@@ -991,6 +991,14 @@ body.mobile-nav-active #mobile-nav-toggle {
     margin-bottom:150px;
 }
 
+.centeredImageSmaller{
+    width : 70%;
+    display:block;
+    margin-left : auto;
+    margin-right: auto;
+    margin-bottom:50px;
+}
+
 
 #imageBiogas {
     max-height: 400px;
@@ -1030,6 +1038,10 @@ body.mobile-nav-active #mobile-nav-toggle {
     .frameInfo {
         margin-bottom:0px;
     
+    }
+    
+    .centeredImageSmaller{
+        width:90%
     }
 
    
