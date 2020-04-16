@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- css -->
+   <!-- <link rel="stylesheet" href="../css/Bootstrap/bootstrap.min.css">   -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/f9136cac43.js" crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
+    rel="stylesheet">
+
+
+    <title>Simulador</title>
+</head>
+
+<body>
+
+    <div class="question">
+       ¿Qué proporción del lirio fresco dedicas a cada proceso?
+    </div>
+    
+    <form action="" class="form" id="form">
+    </form>
+    
+    
+    <div class="arrows">
+        <a href="products.html"> <i class="fas fa-chevron-left"></i></a>
+        <a href="" id="next" ><i class="fas fa-chevron-right" ></i></a>        
+    </div>
+                
+  <!--  <script src="../js/JQuery/jquery-3.3.1.min.js"></script>
+    <script src="../js/Bootstrap/bootstrap.min.js"></script>
+    <script src="../js/Bootstrap/bootstrap.bundle.js"></script>   -->
+    <script src="../js/main.js"></script>
+
+    <script>
+        miStorage = window.localStorage;       
+        var next = document.getElementById('next');
+        var products = localStorage.getItem('products').split(",")   
+        var divForm = document.getElementById('form')
+        
+        //definir button next
+        //si existe el secado, ir a la metodo de venta del secado, sino ir a precios
+        if(products[1]=="true"){next.setAttribute('href','venta_secado.html')}
+        else {next.setAttribute('href','prices.html')};
+        
+          
+
+        
+        
+        
+        function crearDivs(name, id) {
+            this.name = name;
+            this.id = id;
+
+            var formGroup = document.createElement('div')
+            formGroup.setAttribute('class', 'form-group')
+
+            var label = document.createElement('label')
+            label.setAttribute('class', 'label')
+
+            var labeltext = document.createTextNode(name)
+            label.appendChild(labeltext)
+
+            var input = document.createElement('input')
+
+            input.setAttribute('type', 'text')
+            //input.setAttribute('class', 'form-control')
+            input.setAttribute('id', id)   
+
+            var label2 = document.createElement('label')
+            label2.setAttribute('class', 'unit')
+
+            var label2Text = document.createTextNode('%')
+            label2.appendChild(label2Text)
+
+            
+            formGroup.appendChild(label)
+            formGroup.appendChild(input)
+            formGroup.appendChild(label2)
+
+            divForm.appendChild(formGroup)
+        }
+            
+        
+        var percents = localStorage.getItem('percents')
+        if(percents == null) {percents = '0,0,0,0'}
+        percents = percents.split(',')
+        var names = localStorage.getItem('names').split(',');
+        
+        for (var i=0;i<products.length;i++){
+            if(products[i]=="true") {
+                crearDivs(names[i],i)
+                document.getElementById(i).setAttribute('value',percents[i]*100)
+            }
+        }
+        
+        
+
+        next.addEventListener('click', function () {
+            
+            var percents =[0,0,0,0]
+
+            for(var i=0;i<products.length;i++) {
+                if (products[i] == 'true') {
+                    percents[i]= document.getElementById(i).value/100;
+                }
+            }
+                    localStorage.setItem('percents',percents)
+                      
+            
+        });
+            
+
+    </script>
+</body>
+
+</html>

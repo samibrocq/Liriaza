@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- css -->
+   <!--  <link rel="stylesheet" href="../css/Bootstrap/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style_results.css">
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/f9136cac43.js" crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
+    rel="stylesheet">
+
+
+    <title>Simulador</title>
+</head>
+
+<body>
+
+    
+    <div class='title'>
+        <h3><strong>Resultados</strong></h3>
+    </div>
+    
+    <table>
+        <caption>(Pulsa una cifra para ver detalles)</caption>
+        <thead>
+            
+            <tr>
+                <td class='col-1'>Superficie</td>
+                <td id='superficie' class='col-2 linkRow' onclick="document.location='surfaces.html'"></td>
+                <td class='col-3'>m²</td>
+                <td class='infobubble col-4'
+                    label='Superficie de los equipos, más espacios de circulación'>
+                    <i class='fas fa-info'></i>
+                </td>  
+            </tr>
+            
+        </thead>
+        
+        <tbody>
+            <tr>
+                <td class='col-1'>Horas de trabajo</td>
+                <td id='hours' class='col-2 linkRow' onclick="document.location='workhours.html'"></td>
+                <td class='col-3'>horas /semana</td>
+                <td class='infobubble col-4'
+                    label='Incluye tiempos de adicionales (pausas, limpieza, mantenimiento, ...)'>
+                    <i class='fas fa-info'></i>
+                </td>   
+            </tr>
+            
+            <tr>
+                <td class='col-1'>Trabajadores</td>
+                <td class='col-2'id='workers' class='col-2'></td>
+                <td class='col-3'></td>
+                <td class='infobubble col-4'
+                    label='Número mínimo suponiendo que 1 persona trabaja 35 horas/semana'>
+                    <i class='fas fa-info'></i>
+                </td>   
+            </tr>
+
+            <tr>
+                <td class='col-1'>Producción</td>
+                <td colspan=3>
+                   <table class='sub-table'>
+              
+                    </table> 
+                </td>
+                
+                  
+            </tr>
+
+            <tr>
+                <td class='col-1'>Inversión</td>
+                <td id='invest' class='col-2 linkRow' onclick="document.location='investments.html'"></td>
+                <td class='col-3'>$MXN</td>
+                <td class='infobubble col-4'
+                    label='No incluye los equipos de cosecha (lancha, ...)'>
+                    <i class='fas fa-info'></i></td>   
+            </tr>
+
+            <tr>
+                <td class='col-1'>Ingresos</td>
+                <td id="gain" class='col-2 linkRow' onclick="document.location='gains.html'"></td>
+                <td class='col-3'>$MXN/año</td> 
+                <td class='infobubble col-4'
+                    label='Suponiendo la venta de toda la producción'>
+                    <i class='fas fa-info'></i></td>
+            </tr>  
+        </tbody>
+    </table>
+
+           
+
+    <div class='arrows'>
+                <a href="form_complete.html"> <i class="fas fa-chevron-left"></i></a>
+                <a href="exit.html" id="next"><i class="fas fa-chevron-right"></i></a>
+    </div>
+            
+
+
+
+<!--
+    <script src="../js/JQuery/jquery-3.3.1.min.js"></script>
+    <script src="../js/Bootstrap/bootstrap.min.js"></script>
+    <script src="../js/Bootstrap/bootstrap.bundle.js"></script>  -->
+    <script src="../js/main.js"></script>
+    <script src="../js/internal_data.js"></script>
+    <script src="../js/simulador.js"></script>
+
+    <script> 
+       var surfaceCell = document.getElementById('superficie')  
+       surfaceCell.textContent = separ_milliers(Math.round(output.total.surface))
+        
+       var hoursCell = document.getElementById('hours')
+       hoursCell.textContent = Math.round(output.total.hours)
+       
+       var workersCell = document.getElementById('workers')
+       workersCell.textContent = Math.ceil(output.total.hours/35);
+        
+       var units = ['kg/año','kg/año','kWh/año','kg/año',] 
+       var comments = ['Producto con 30% de húmedad', 'Producto con 10% de húmedad', 'Capacidad energética del gás', 'Producto con 30% de húmedad']
+      
+       function createRow (name,value, unit,comment) {
+           
+           var subTable = document.querySelector('.sub-table')
+           var tr = document.createElement('tr') 
+           subTable.append(tr)
+           
+           var nameCell = document.createElement('td')
+           nameCell.setAttribute('class','col-1')
+           nameCell.textContent = name
+           tr.append(nameCell)
+           
+           var valueCell = document.createElement('td')
+           valueCell.setAttribute('class','col-2')
+           valueCell.textContent = separ_milliers(Math.round(value));
+           tr.append(valueCell)
+           
+           
+           var unitCell = document.createElement('td')
+           unitCell.setAttribute('class','col-3')
+           unitCell.textContent = unit
+           unitCell.setAttribute('id','unit')
+           tr.append(unitCell)
+           
+           var infoCell = document.createElement('td')
+           infoCell.setAttribute('class','infobubble col-4')
+           infoCell.setAttribute('label',comment)
+           var infoIcon = document.createElement('i')
+           infoIcon.setAttribute('class','fas fa-info')
+           tr.append(infoCell)
+           infoCell.append(infoIcon)
+        
+       }
+            
+       for (let i=0;i<products.length;i++){
+           if(products[i]=='true') {
+               createRow(names[i],output[i].prod, units[i],comments[i])
+           }
+       }
+        
+       var investCell = document.getElementById('invest')
+       investCell.textContent = separ_milliers(Math.round(output.total.invest))
+        
+       var gainCell = document.getElementById('gain')
+       gainCell.textContent = separ_milliers(Math.round(output.total.gain) )
+        
+
+     
+    </script>
+</body>
+
+</html>

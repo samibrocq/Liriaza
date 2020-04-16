@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- css -->
+   <!-- <link rel="stylesheet" href="../css/Bootstrap/bootstrap.min.css">  -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/f9136cac43.js" crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
+    rel="stylesheet">
+
+
+    <title>Simulador</title>
+</head>
+
+<body>
+
+        <div class="question">¿A qué precios podrías vender tus productos? </div>
+       
+        <form action="" id="form">
+        </form>
+               
+            
+        <div class="arrows">
+               <a href="" id="back"> <i class="fas fa-chevron-left"></i></a>
+
+                <a href="form_complete.html" id="next"><i class="fas fa-chevron-right"></i></a>
+        </div>
+            
+  <!--  <script src="../js/JQuery/jquery-3.3.1.min.js"></script>
+    <script src="../js/Bootstrap/bootstrap.min.js"></script>
+    <script src="../js/Bootstrap/bootstrap.bundle.js"></script>  -->
+    <script src="../js/main.js"></script>
+
+    <script>
+        miStorage = window.localStorage;
+        var next = document.getElementById('next');
+        var back = document.getElementById('back')
+        var products = localStorage.getItem('products').split(",")
+        var form = document.getElementById('form')
+        var sum = localStorage.getItem('sum')
+        
+    
+        var prices = localStorage.getItem('prices')
+        if (prices == null){prices = [0,0,0,0]}
+        else {prices = prices.split(',')}
+        
+        //definicion del button back
+        //si existe el secado como producto, regresar a la pregunta del modo de venta
+        if(products[1]=="true"){back.setAttribute('href','venta_secado.html')}
+        
+        //si no se hace el secado y hay varios productos, regresar a la pregunta de las proporciones
+        //si no se hace el secado, y hay solo un producto, regresar a la pregunta de los productos
+       
+        
+        else{
+             if(sum>1) {back.setAttribute('href','proportions.html')}
+            else {back.setAttribute('href','products.html')}
+        }
+        
+       
+
+        function crearDivs(name, id, unit, comment) {
+            this.name = name ;
+            this.id = id;
+            this.unit = unit;
+            this.comment = comment;  
+
+            
+            //Create Form groups
+            var formGroup = document.createElement('div')
+            formGroup.setAttribute('class', 'form-group')
+
+            var label = document.createElement('label')
+            var labelText = document.createTextNode(name)
+            label.appendChild(labelText)
+
+            var input = document.createElement('input')
+            input.setAttribute('type', 'text')
+            input.setAttribute('class', 'form-control')
+            input.setAttribute('id', id)
+
+            var label2 = document.createElement('label')
+            label2.setAttribute('class','unit')
+            var priceUnit = document.createTextNode(unit)
+            label2.appendChild(priceUnit)
+
+            var help = document.createElement('div')
+            help.setAttribute('class','infobubble-right')
+            help.setAttribute('label',comment)
+            var i = document.createElement('i')
+            i.setAttribute('class', 'fa fa-question')
+
+            formGroup.appendChild(label)
+            formGroup.appendChild(input)
+            formGroup.appendChild(label2)
+            formGroup.appendChild(help)
+            help.appendChild(i)
+
+            form.appendChild(formGroup)
+
+        }
+
+        var productNames=['Lombricomposta','Secado','Biogás','Composta']
+        
+        var comments = ['Entre 5$/kg (profesionales) y 15$/kg (particulares)',
+                        'Entre 5$/kg (materia bruta) y 50$/kg (producto molido y  acondicionado)',
+                        'El biogás no se destina particularmente a la venta pero puede permitir un ahorro de energía en la planta',
+                        'Entre 2$/kg (profesionales) y 10$/kg (particulares)']
+        var units = ['$/kg', '$/kg', '$/kWh', '$/kg']
+        
+        for(var i=0;i<products.length;i++) {
+            if (products[i] == 'true') {
+                crearDivs(productNames[i], i, units[i], comments[i])
+                document.getElementById(i).setAttribute('value',prices[i])
+            }
+        }
+        
+        
+        
+        
+                
+        next.addEventListener('click', function () {
+            prices = [0,0,0,0]    
+           
+            for(var i=0;i<products.length;i++) {
+                if(products[i]=="true") {prices[i]= document.getElementById(i).value}
+                else {products[i]=0}     
+            }
+                
+            localStorage.setItem('prices',prices)   
+        
+            
+        })
+        
+    </script>
+</body>
+
+</html>

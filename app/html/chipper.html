@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- css -->
+    <!--<link rel="stylesheet" href="../css/Bootstrap/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/f9136cac43.js" crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
+    rel="stylesheet">
+
+    <title>Simulador</title>
+</head>
+
+<body>
+    <div class="question">¿Qué método eliges para moler el lirio?</div>
+    
+    <form action="" class="form">
+        <div class='form-group'>    
+            <input class="form-check-input" type="radio" id="metodo1" name="molido" value="manual">
+            <label for="staticEmail" class="">A mano</label>
+            <img src="../img/knife.png" alt="" class="">
+            <div class="infobubble-right" label='Solución económica pero con más tiempo de trabajo'>
+                <i class="fa fa-question"></i>
+            </div>                   
+        </div>
+
+        <div class="form-group">
+            <input class="form-check-input" type="radio" name="molido" id="metodo2" value="mechanical">                 
+            <label for="staticEmail" class="">Con una trituradora</label>
+            <img src="../img/chipper.gif" alt="" class="">
+            <div class="infobubble-right" label="Necesita una inversión importante pero ahorra mucho tiempo de trabajo"><i class="fa fa-question"></i>  </div>
+        </div>                       
+    </form>                                   
+                          
+    <div class="arrows">
+        <a href="quantity.html"> <i class="fas fa-chevron-left"></i></a>
+        <a href="products.html" id="next"><i class="fas fa-chevron-right"></i></a>
+    </div>
+          
+
+
+
+<!--    <script src="../js/JQuery/jquery-3.3.1.min.js"></script>
+    <script src="../js/Bootstrap/bootstrap.min.js"></script>
+    <script src="../js/Bootstrap/bootstrap.bundle.js"></script>  -->
+    <script src="../js/main.js"></script>
+
+    <script>
+        miStorage = window.localStorage;
+        
+        //autofill input
+        var chipMethod = localStorage.getItem('chipMethod')
+        if(chipMethod==null) {chipMethod='hand'}
+        var input1 = document.getElementById('metodo1')
+        var input2 = document.getElementById('metodo2')
+        if(chipMethod=='hand') {input1.checked=true}
+        else{input2.checked=true}
+        
+  
+        next.addEventListener('click', function () {
+
+        var metodo1 = document.getElementById('metodo1').checked;
+        var metodo2 = document.getElementById('metodo2').checked;
+        var chipMethod;
+            
+        metodo1 ? chipMethod = "hand" : chipMethod = "chipper"
+            
+        localStorage.setItem('chipMethod', chipMethod);
+   
+        })
+    </script>
+</body>
+
+</html>

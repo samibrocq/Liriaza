@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- css -->
+   <!--  <link rel="stylesheet" href="../css/Bootstrap/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/style_details.css">
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/f9136cac43.js" crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
+    rel="stylesheet">
+
+
+    <title>Simulador</title>
+</head>
+
+<body>
+
+    
+    <div class="title">
+        <h1><strong>Ingresos</strong></h1>
+    </div>
+    
+    <div id='tables' class='gainTable'>
+    </div>
+    
+     <div class='arrows'>
+                <a href="results_general.html"> <i class="fas fa-chevron-left"></i></a> 
+    </div>
+    
+    
+    
+    <script src="../js/main.js"></script>
+    <script src="../js/internal_data.js"></script>
+    <script src="../js/simulador.js"></script>
+    <script>
+        
+     function createRow (processId) {
+           
+           var div = document.querySelector('#tables')
+           var table = document.createElement('table')
+           var tr = document.createElement('tr') 
+           div.append(table) ; table.append(tr)
+           
+           var nameCell = document.createElement('td')
+           nameCell.setAttribute('class','col-1')
+           nameCell.textContent = 'Venta de ' + names[processId]
+           tr.append(nameCell)
+           
+           var valueCell = document.createElement('td')
+           valueCell.setAttribute('class','col-2')
+           valueCell.textContent = separ_milliers(Math.round(output[processId].gain));
+           tr.append(valueCell)
+           
+           var unitCell = document.createElement('td')
+           unitCell.setAttribute('class','col-3')
+           unitCell.textContent = '$ MXN / año '
+           tr.append(unitCell)
+           
+       }
+
+     for (let j=0 ; j<products.length ; j++) {
+       if(products[j] == 'true') { createRow(j) }
+     }
+    
+     createTotalRow('Total', separ_milliers(Math.round(output.total.gain)), '$ MXN')
+    
+    </script>
+
+</body>
+</html>

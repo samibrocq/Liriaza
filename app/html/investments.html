@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- css -->
+   <!--  <link rel="stylesheet" href="../css/Bootstrap/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/style_details.css">
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/f9136cac43.js" crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
+    rel="stylesheet">
+
+
+    <title>Simulador</title>
+</head>
+
+<body>
+
+    
+    <div class="title">
+        <h1><strong>Inversiones</strong></h1>
+    </div>
+    
+    <div id="tables" class="investTable">
+    </div>
+    
+     <div class='arrows'>
+                <a href="results_general.html"> <i class="fas fa-chevron-left"></i></a> 
+    </div>
+    
+    
+    
+    <script src="../js/main.js"></script>
+    <script src="../js/internal_data.js"></script>
+    <script src="../js/simulador.js"></script>
+    <script>
+        
+     function createTable (processId) {
+           
+           let processName = names[processId]
+           let div = document.querySelector('#tables')
+           let table = document.createElement('table')
+           div.append(table)
+           var rowName =  document.createElement('caption')
+           rowName.textContent = processName
+           table.append(rowName)
+            
+           for(let j=1 ; j<output[processId].invest.length ; j++) {
+               let row = document.createElement('tr')
+               table.append(row)
+               
+               let quantCell = document.createElement('td')
+               quantCell.setAttribute('class', 'col-0')
+               row.append(quantCell)
+               quantCell.textContent = output[processId].invest[j][2]
+               
+               let nameCell = document.createElement('td')
+               nameCell.setAttribute('class','col-1')
+               row.append(nameCell)
+               nameCell.textContent = output[processId].invest[j][0]
+               
+               let valueCell = document.createElement('td')
+               valueCell.setAttribute('class','col-2')
+               row.append(valueCell)
+               valueCell.textContent = separ_milliers(Math.round(output[processId].invest[j][1]))
+               
+               let unitCell = document.createElement('td')
+               unitCell.setAttribute('class','col-3')
+               row.append(unitCell)
+               unitCell.textContent = '$ MXN'
+           } 
+            
+         let totalRow = document.createElement('tr')
+         totalRow.setAttribute('class','totalRow')
+         table.append(totalRow)
+         
+         let totalCell = document.createElement('td')
+         totalCell.setAttribute('class','col-1')
+         totalCell.setAttribute('colspan',2)
+         totalRow.append(totalCell)
+         totalCell.textContent = 'Total'
+            
+         let totalValueCell  = document.createElement('td')
+         totalValueCell.setAttribute('class','col-2')
+         totalRow.append(totalValueCell)
+         totalValueCell.textContent = separ_milliers(Math.ceil(output[processId].invest[0][1]))
+            
+         let unitCell = document.createElement('td')
+         unitCell.setAttribute('class','col-3')
+         totalRow.append(unitCell)
+         unitCell.textContent = '$ MXN'
+        
+    }
+        
+
+     for (let j=0 ; j<products.length ; j++) {
+       if(products[j] == 'true') { createTable(j) }
+     }
+        
+     createTable(5)
+     createTotalRow('Total', separ_milliers(output.total.invest), '$ MXN')
+        
+        
+    </script>
+
+</body>
+</html>

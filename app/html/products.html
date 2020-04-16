@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- css -->
+    <!--<link rel="stylesheet" href="../css/Bootstrap/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="../css/style.css">
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/f9136cac43.js" crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
+    rel="stylesheet">
+
+
+    <title>Simulador</title>
+</head>
+
+<body>
+
+    <div class="question">
+       ¿Qué quieres producir a partir del lirio?
+    </div>
+                    
+    <form action="" class="form">
+        
+        <div class="form-group">      
+             <input class="form-check-input" type="checkbox" id=0 >
+             <label class="form-check-label" for="inlineCheckbox1">Lombricomposta</label>
+        </div>              
+
+        <div class="form-group">   
+            <input class="form-check-input" type="checkbox" id=1 >
+            <label class="form-check-label" for="inlineCheckbox3">Secado</label>
+        </div>
+     
+        <div class="form-group">   
+            <input class="form-check-input" type="checkbox" id=2 >
+            <label class="form-check-label" for="inlineCheckbox4">Biogás</label>
+        </div>
+     
+        <div class="form-group">   
+            <input class="form-check-input" type="checkbox" id=3 >
+            <label class="form-check-label" for="inlineCheckbox2">Composta</label>
+        </div>
+                             
+     </form>
+               
+
+    <div class="arrows">
+        
+        <a href="chipper.html"><i class="fas fa-chevron-left"></i></a>
+        
+        <div class="infobubble-bottom"
+             label="Ver más información sobre los productos en la página web">
+            <i class="fa fa-question"></i> 
+         </div>
+                            
+         <a href="" id="next"> <i class="fas fa-chevron-right" ></i></a>
+    
+    </div>
+               
+
+
+     <!--  <script src="../js/JQuery/jquery-3.3.1.min.js"></script>
+    <script src="../js/Bootstrap/bootstrap.min.js"></script>
+    <script src="../js/Bootstrap/bootstrap.bundle.js"></script>  -->
+    <script src="../js/main.js"></script>
+
+    <script>
+            miStorage = window.localStorage;
+            var next = document.getElementById('next');
+        
+           
+              //autofill inputs
+            var products = localStorage.getItem('products')
+            if(products==null) {products = '[false,false,false,false]'}
+            products = products.split(',')
+            for (var i=0;i<products.length;i++) {
+                if(products[i]=="true") { document.getElementById(i).checked=true }
+            }  
+    
+            next.addEventListener('click', function () {
+    
+                var products = [document.getElementById(0).checked,
+                               document.getElementById(1).checked,
+                               document.getElementById(2).checked,
+                               document.getElementById(3).checked]
+                
+                
+                localStorage.setItem('products', products);  
+            
+               //Contar el numero de productos elegidos
+                
+                var products_num =[0,0,0,0];
+                var sum = 0;
+                
+                for(var i=0;i<products.length;i++) {
+                    if (products[i]) { products_num[i]=1 }
+                    sum+=products_num[i]
+                }
+                
+                localStorage.setItem('sum',sum)
+                
+                //definicion de la pagina siguiente
+                //si hay varios productos, ir a la pregunta de las proporciones
+                    if(sum>1){next.setAttribute('href','proportions.html')}
+                
+                //si hay 1 solo producto, definir las proporciones ya
+                // Si el producto es secado, ir a la pregunta del modo de venta del secado
+                //   Sino, ir a los precios
+                    else {
+                        var percents = [0,0,0,0];   //Porcentajes de lirio dedicado a cada proceso
+                        for (var i=0; i<products.length;i++){
+                            if( products[i] ) {
+                                percents[i]=1; 
+                            }
+                        }
+                        localStorage.setItem('percents',percents);
+                        
+                        if(products_num.join()==[0,1,0,0].join()) {next.setAttribute('href','venta_secado.html')}
+                
+                        else {                        
+                        next.setAttribute('href','prices.html');
+                        }
+                        console.log(percents)
+             
+                }
+    
+            })
+        </script>
+</body>
+
+</html>

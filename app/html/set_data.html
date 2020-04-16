@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- css -->
+   <!--  <link rel="stylesheet" href="../css/Bootstrap/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style_data.css">
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/f9136cac43.js" crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
+    rel="stylesheet">
+
+
+    <title>Simulador</title>
+</head>
+
+<body>
+
+    
+    <div class="question">
+        <h1><strong>Ver / modificar los datos internos</strong></h1>
+    </div>
+    
+    <form action="" class="dataForm">
+        
+    </form>
+    
+     <div class='arrows'>
+                <a href="exit.html"> <i class="fas fa-chevron-left"></i></a>
+                <a href="" id='saveButton'class="button">Guardar valores</a>
+                <a href="" id='resetButton' class="button">Reset</a>
+    </div>
+    
+    
+    
+    <script src="../js/main.js"></script>
+    <script src="../js/internal_data.js"></script>
+   <!-- <script src="../js/simulador.js"></script> -->
+    <script>
+        
+     //Print table
+     for (let [key1, value1] of Object.entries(data)) {
+          
+         let field = document.createElement('fieldset')
+         let legend = document.createElement('legend')
+         let form = document.querySelector('form')
+         form.append(field) ; field.append(legend) 
+         legend.textContent = key1
+        
+         for (let [key2, value2] of Object.entries(value1)) {
+            
+             if (value2.hasOwnProperty('length')){
+               
+                let p = document.createElement('p')
+                
+                let label = document.createElement('label')
+                label.textContent = value2[0]
+               
+                let input = document.createElement('input')
+                input.setAttribute('type', 'text')
+                input.setAttribute('id', key2) 
+                input.setAttribute('value' , separ_milliers(value2[1]))
+                
+                let unit = document.createElement('label')
+                unit.textContent = value2[2]
+                unit.setAttribute('class','unit')
+                 
+                field.append(p) ; p.append(label) ; p.append(input) ; p.append(unit)
+            } 
+            
+             else {
+                 
+                 let subTitle = document.createElement('h3')
+                                  
+                 switch(key2){
+                     case 'hours' : subTitle.textContent = 'Tiempo de trabajo'; break;
+                     case 'prices' : subTitle.textContent = 'Precios' ; break;
+                 }
+                 
+                 field.append(subTitle) ; 
+                 
+                 for(let [key3,value3] of Object.entries(value2)) {
+                 
+                     let p = document.createElement('p')
+                     field.append(p)
+
+                     let label = document.createElement('label')
+                     label.textContent = value3[0]
+                     p.append(label)
+
+                     let input = document.createElement('input')
+                     input.setAttribute('type', 'text')
+                     input.setAttribute('id', key3) 
+                     input.setAttribute('value' , separ_milliers(value3[1]))
+                     p.append(input)
+                     
+                     let unit = document.createElement('label')
+                     unit.textContent = value3[2]
+                     unit.setAttribute('class','unit')
+                     p.append(unit)
+                 }    
+             }
+          
+         } 
+     }
+         
+      
+        //Guardar
+        let saveButton = document.getElementById('saveButton')
+        saveButton.addEventListener('click', function() {
+            
+            let inputs = document.querySelectorAll('input')
+            for (let i=0; i<inputs.length; i++){
+                let id = inputs[i].id 
+                let value = inputs[i].value
+                localStorage.setItem(id,value)
+            }
+            
+        });
+        
+        //Reset
+        let resetButton = document.getElementById('resetButton')
+        resetButton.addEventListener('click', function() {
+              
+        let inputs = document.querySelectorAll('input')
+            for (let i=0; i<inputs.length; i++){
+                let id = inputs[i].id 
+                let value = inputs[i].value
+                localStorage.removeItem(id,value)
+            };
+        });
+         
+     
+        
+        
+    </script>
+
+</body>
+</html>
