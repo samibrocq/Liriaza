@@ -1,0 +1,98 @@
+.title {
+    text-align: center;
+    padding-top: 5%; padding-bottom:5%;
+}
+
+table{
+    table-layout: fixed;
+    width:80%;
+    border-collapse: collapse;
+    margin-left: 10%; margin-right: 10%;   
+}
+
+caption {
+    caption-side: top;
+    text-align:left;
+    font-size: 0.66em;
+    font-style: italic;
+    margin:1em;
+        
+}
+th,td{
+    padding : 1rem 0 1rem 1rem;
+    vertical-align: bottom;
+    border-bottom: 1px solid black;
+}
+
+.col-1{width:30%;}
+.col-2{width:25%;font-size: 1.5em; text-align: right; line-height:1}
+.col-3{width:40%; padding-left:10%; padding-right:10%}
+.col-4{width:5%; text-align: right}
+
+.fa-info{
+    font-size: 1em;
+    font-weight:lighter;
+    }
+
+.sub-table{
+    width:100%;
+    margin:0px;
+}
+
+.sub-table .col-1{width:30%;}
+.sub-table .col-2{width:25%; line-height:normal; text-align: right; padding-right: 6%}
+.sub-table .col-3{width:20%; padding-left: 10%}
+.sub-table .col-4{width:5%}
+
+.sub-table td{
+    padding:0px;;
+    font-size:0.75em;
+    font-weight:lighter;
+}
+
+#unit{
+    font-size:0.6em;
+    line-height:1.7;
+}
+
+.sub-table .fa-question{font-size: 0.75em}
+
+tr:hover {background-color: #f5f5f5;}
+
+.linkRow {
+cursor:pointer;
+}
+
+@media(max-width:750px){
+   *{
+        font-size:16px;
+    }
+    
+    th,td{
+        padding-left:0;
+    }
+    
+    table{
+        width:90%;
+        margin:5%;
+    }
+    
+    .col-1{width:30%;}
+    .col-2{width:20%;font-size: 1em; text-align: right; line-height: normal}
+    .col-3{width:40%; text-align: left; padding-right: 1em}
+}
+
+.infobubble:hover::after{
+    content:attr(label);
+    position: absolute;
+    right:1em;
+    padding: 1em;  
+    background-color:black;
+    color:white;
+    text-align: center;
+    font-size : 0.75em;
+    border-radius:20px;
+    width:15em;
+    z-index:1;
+}
+

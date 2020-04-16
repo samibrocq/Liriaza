@@ -1,0 +1,91 @@
+body{
+
+}
+
+.dataForm {
+    height:auto;
+    padding-left : 10% ;
+    width:80%;
+}
+
+fieldset{
+    margin-bottom: 2em;
+    border-width: 1px;
+}
+
+
+legend {
+    font-weight: bold;
+}
+
+p{
+    display:flex;
+    justify-content: flex-start;
+    margin-left:12px
+}
+
+label {
+    width :45%;
+    text-align: left;
+}
+
+input{
+    width:25%;
+    margin-right: 10%;
+    
+}
+
+.unit{
+    width:20%;
+    padding-right:1em;
+}
+
+h3 {
+    margin-left:12px; margin-top:2.5em;
+    font-size: 0.66em;
+    font-weight: 600;
+    
+}
+
+.button {
+    border : black 1px solid;
+    border-radius : 2em;
+    color: black;
+    padding:0.3em 1em;
+    font-size:0.75em;
+}
+
+@media(max-width:750px) {
+    .dataForm{
+        padding-left:5%;
+        width:90%
+    }
+    
+    p{
+        margin-left:0; margin-right:0;
+    }
+    
+    h3{
+        margin-left:0;
+    }
+    
+    label{
+        padding-right:1em;
+        width:45%;
+    }
+    
+    input{
+        margin-right: 1em;
+        width:25%;
+        
+    }
+    
+     .unit{
+        padding-right: 0;
+        align-self: center;
+        width:15%;
+        font-size:0.66em;
+    }
+ }
+
+

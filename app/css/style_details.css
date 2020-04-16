@@ -1,0 +1,72 @@
+.title {
+    text-align: center;
+    padding-top: 5%;padding-bottom:5%;
+}
+
+table{
+    table-layout: fixed;
+    width:80%;
+    border-collapse: collapse;
+    margin : 0 10% 2em 10%;
+}
+
+caption{
+    caption-side: top;
+    text-align: left;
+    font-weight : 500;
+    margin-bottom:0.5em;
+}
+
+th,td{
+    padding : 0.5em 0 0.5em 1em;
+    vertical-align: bottom;
+    border-bottom: 1px solid black;
+    font-size: 0.75em;
+    
+}
+
+
+.col-1{width:40%;}
+.col-2{width:20%;font-size: 1em; line-height:1;text-align: right}
+.col-3{width:40%; text-align: right}
+
+.investTable .col-0{width:20%}
+.investTable .col-1{width:40%}
+.investTable .col-2{width:20%}
+.investTable .col-3{width:20%}
+
+.investTable .generalTotal .col-1 {width:60%}
+.investTable .generalTotal .col-2 {width:20%}
+.investTable .generalTotal .col-3 {width:20%}
+
+.gainTable td {
+    padding-left: 0
+}
+
+.fa-info{
+    font-size: 1em;
+    font-weight:lighter;
+    }
+
+.totalRow {
+    background-color: #f5f5f5
+}
+
+.generalTotal {
+    font-weight: bold;
+}
+
+.generalTotal .col-1{
+    font-size:1em;
+    padding-left:0;
+}
+
+tr:hover {background-color: #f5f5f5;}
+
+@media(max-width:750px){
+   *{
+        font-size:16px;
+    }
+    
+   
+}
