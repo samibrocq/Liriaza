@@ -116,23 +116,23 @@ function fHarvest(quantity,performance) {  //add investment
     output[4].hours[0][1] = hours
     output[4].invest[0][1] = 0
 }
-fHarvest(qLirio,dataHarvest.harvestYield)
+fHarvest(qLirio,data.Cosecha.harvestYield[1])
 
 
 function fChipper(chipMethod,quantity_input) {
    if(chipMethod == 'hand') {
-       var performance = dataChipping.manualYield;
+       var performance = data.Molido.manualYield[1];
        output[5].invest[0][1] = 0
    }
     else {
-        var performance = dataChipping.chipperYield;
-        var invest = dataChipping.price;
+        var performance = data.Molido.chipperYield[1];
+        var invest = data.Molido.chipperPrice[1];
         output[5].invest.push(['Molino', invest, 1])
         output[5].invest[0][1] = invest
     }
     let hours = quantity_input / performance
     
-    output[5].surface[0][1] = dataChipping.surface
+    output[5].surface[0][1] = data.Molido.chipSurface[1]
     output[5].hours[0][1] = hours 
 }
 
@@ -144,20 +144,20 @@ function fLombri(proportionLombri,sellingPrice){
      
     //1st step : Pre-compost
      let qinput1 = qLirio * proportionLombri
-     let volInput1 = qinput1/dataChipping.chippedwhDensity
+     let volInput1 = qinput1/data.Molido.chippedWhDens[1]
      let boxNumber = Math.ceil(qinput1 / 300) * 3  //3 boxes of 1m3 for every 300kg
      let surface1 = boxNumber * 2     //con area de trabajo
    
      
     //2nd step Lombri-Compost:
-    let qinput2 = qinput1 * dataLombri.massLossPrecompost
-    let volInput2 = qinput2 / dataLombri.compostDensity
+    let qinput2 = qinput1 * data.Lombricomposta.massLossPrecomp[1]
+    let volInput2 = qinput2 / data.Lombricomposta.compostDensity[1]
     let surface2 = (qinput1 *18/300) * 2 // you need 18m2 for every 300kg/semana, mas el pasillo
     
 
     //3rd step : Drying and harvesting
     let surface3 = 4 //m2
-    let production = qinput2 * 4 * dataLombri.massLossCompost
+    let production = qinput2 * 4 * data.Lombricomposta.massLossCompost[1]
     
     
     //Surface
@@ -167,11 +167,14 @@ function fLombri(proportionLombri,sellingPrice){
     output[0].surface[0][1]= surface1 + surface2 + surface3
     
     //Working hours
-    let h1 = dataLombri.hours.fillPrecompost /60 * volInput1,
-        h2 = dataLombri.hours.movePrecompost / 60 * volInput1 * (2/3+1/2),
-        h3 = dataLombri.hours.fillLombricompost /60 *volInput2,
-        h4 = dataLombri.hours.dry / 60 /4  ,         // once a month
-        h5 = dataLombri.hours.cribble /60 * production /4 ;
+    let h1 = data.Lombricomposta.hours.fillPrecompost[1] /60 * volInput1,
+        
+        h2 = data.Lombricomposta.hours.movePrecompost[1] / 60 * volInput1 * (2/3+1/2),
+        h3 = data.Lombricomposta.hours.fillLombricompost[1] /60 *volInput2,
+        h4 = data.Lombricomposta.hours.dryLombri[1] / 60 /4  ,         // once a month
+        h5 = data.Lombricomposta.hours.cribbleLombri[1] /60 * production /4 ;
+    
+
     
     output[0].hours.push(['Llenar precomposteadores' , h1 ]) 
     output[0].hours.push(['Remover precomposteadores', h2 ])
@@ -181,9 +184,9 @@ function fLombri(proportionLombri,sellingPrice){
     output[0].hours[0][1] = h1 + h2 + h3 + h4 + h5 ; 
     
     //Investments
-    let i1 = dataLombri.prices.preCompostBox * boxNumber,
-        i2 = dataLombri.prices.LombriBed * surface2/2,
-        i3 = dataLombri.prices.cribble ;
+    let i1 = data.Lombricomposta.prices.preCompostBox[1] * boxNumber,
+        i2 = data.Lombricomposta.prices.lombriBed[1] * surface2/2,
+        i3 = data.Lombricomposta.prices.cribbleLombri[1] ;
     
     output[0].invest.push(['Cajas de pre-compost', i1, boxNumber ])
     output[0].invest.push(['Camas de lombrices', i2, Math.round(surface2/2) + ' m²'])
@@ -202,17 +205,17 @@ if (products[0] == 'true') { fLombri(percents[0],prices[0]) }
 
 function fDrying(proportionDrying, sellOption, sellingPrice) {  //5 dias para secar
     let qInput = qLirio * percents[1]
-    let boardSurface = qInput / dataDrying.whBoardDensity//superficie de las charolas
+    let boardSurface = qInput / data.Secado.whBoardDensity[1]//superficie de las charolas
     let useSurface = (boardSurface * 2) / 2 //2 niveles de charolas
-    let prod = qInput * dataDrying.massLoss * 4 * 12 //per year
+    let prod = qInput * data.Secado.dryMassLoss[1] * 4 * 12 //per year
    
     //Surface
     output[1].surface.push(['Secador', useSurface])
     output[1].surface[0][1] = useSurface
     
     //Working hours    
-    let h1 = qInput / dataDrying.hours.fillDryer 
-    let h2 = qInput * dataDrying.massLoss / dataDrying.hours.emptyDryer
+    let h1 = qInput / data.Secado.hours.fillDryer[1]
+    let h2 = qInput * data.Secado.dryMassLoss[1] / data.Secado.hours.emptyDryer[1]
     output[1].hours.push(['Llenar secador', h1])
     output[1].hours.push(['Vaciar secador', h2])
     output[1].hours[0][1] = h1 + h2
@@ -221,8 +224,8 @@ function fDrying(proportionDrying, sellOption, sellingPrice) {  //5 dias para se
     output[1].prod = prod
     
     //Investments
-    let i1 = dataDrying.invest.house*useSurface
-    let i2 = dataDrying.invest.grinder
+    let i1 = data.Secado.prices.house[1] * useSurface
+    let i2 = data.Secado.prices.grinder[1]
   
     if(sellOption == 'rough') {
         output[1].invest.push(['Secador', i1, Math.round(useSurface) + ' m²' ])
@@ -246,17 +249,17 @@ function fGas(proportionGas,sellingPrice){
     let qInput = qLirio * proportionGas
     let liquidVolume = qInput * 0.8,
         solidMass = qInput * 0.2,
-        rhaleVolume= (qInput * dataGas.RhaleCapacity) / 5,
-        uasbVolume = (qInput * dataGas.UasbCapacity) / 5 ;
+        rhaleVolume= (qInput * data.Biogás.rhaleCapacity[1]) / 5,
+        uasbVolume = (qInput * data.Biogás.uasbCapacity[1]) / 5 ;
     
     //Production
-    let volumeProduction = (uasbVolume * dataGas.UasbYield * 30) / 1000,  //m3/mes
-        energyProduction = volumeProduction * dataGas.biogasHeatingCapacity ; //kWh/mes
-    output[2].prod = energyProduction * 12 //kWh/ano
+    let volumeProduction = (uasbVolume * data.Biogás.uasbYield[1] * 30) / 1000,  //m3/mes
+        energyProduction = volumeProduction * data.Biogás.biogasHeatingCapacity[1] ; //kWh/mes
+        output[2].prod = energyProduction * 12 //kWh/ano
                                
     
     //Surface
-    let s1 = dataGas.surface.extractor,
+    let s1 = data.Biogás.surfaceExtractor[1],
         s2 = (rhaleVolume + uasbVolume)/1000/1*4,
         s3 = volumeProduction/2
     
@@ -266,9 +269,9 @@ function fGas(proportionGas,sellingPrice){
     output[2].surface[0][1] = s1 + s2 + s3
     
     //Working hours
-    let h1 = qInput / dataGas.hours.liquidExtraction 
-    let h2 = qInput * dataGas.hours.feedRHALE / 60 
-    let h3 = qInput * dataGas.hours.feedUASB/60 ;
+    let h1 = qInput / data.Biogás.hours.liquidExtraction[1] 
+    let h2 = qInput * data.Biogás.hours.feedRHALE[1] / 60 
+    let h3 = qInput * data.Biogás.hours.feedUASB[1] /60 ;
     
     output[2].hours.push(['Extraer líquido', h1]) 
     output[2].hours.push(['Llenar RHALE', h2])
@@ -276,11 +279,11 @@ function fGas(proportionGas,sellingPrice){
     output[2].hours[0][1] = h1 + h2 + h3
     
     //Investments
-    let i1 = dataGas.invest.liquidExtractor 
-    let i2 = dataGas.invest.rhale 
-    let i3 = dataGas.invest.uasb 
-    let i4 = dataGas.invest.tent
-    let i5 = dataGas.invest.gasBag
+    let i1 = data.Biogás.prices.liquidExtractor[1]
+    let i2 = data.Biogás.prices.rhale[1]
+    let i3 = data.Biogás.prices.uasb[1]
+    let i4 = data.Biogás.prices.tent[1]
+    let i5 = data.Biogás.prices.gasBag[1]
     
     output[2].invest.push(['Extractor de líquidos',i1, 1])
     output[2].invest.push(['Reactor RHALE',i2, 1])
@@ -299,11 +302,11 @@ if(products[2]=='true') { fGas(percents[2],prices[2]) }
 
 function fCompost(proportion, sellingPrice) {
     let qInput = qLirio * proportion,
-        volInput = qInput / dataChipping.chippedwhDensity,
+        volInput = qInput / data.Molido.chippedWhDens[1],
         compostingUnits = Math.round(qInput / 300),
         boxNumber = compostingUnits * 5,
-        prod = (qInput * 4) * dataCompost.massLoss , //per month
-        prodVolume = prod / dataCompost.compostDensity;
+        prod = (qInput * 4) * data.Compost.compostMassLoss[1] , //per month
+        prodVolume = prod / data.Compost.compostDensity[1];
     
     //Surface
     let surface = boxNumber * 1 * 2 // m2 (con el espacio de circulacion)
@@ -311,10 +314,11 @@ function fCompost(proportion, sellingPrice) {
     output[3].surface[0][1] = surface
     
     //Working hours
-    let h1 = dataCompost.hours.fillBox * volInput / 60,
-        h2 = dataCompost.hours.moveCompost * volInput * (0.6 + 0.3 + 0.2) /60,
-        h3 = dataCompost.hours.dry * prodVolume /4 /60,
-        h4 = dataCompost.hours.cribble * prod /4 /60 ;
+    let h1 = data.Compost.hours.fillCompostBox[1] * volInput / 60,
+        h2 = data.Compost.hours.moveCompost[1] * volInput * (0.6 + 0.3 + 0.2) /60,
+        h3 = data.Compost.hours.dryCompost[1] * prodVolume /4 /60,
+        h4 = data.Compost.hours.cribbleCompost[1] * prod /4 /60 ;
+    
     output[3].hours.push(['Llenar composteadores', h1])
     output[3].hours.push(['Remover', h2])
     output[3].hours.push(['Secar', h3])
@@ -325,7 +329,7 @@ function fCompost(proportion, sellingPrice) {
     output[3].prod = prod * 12
     
     //Investments
-    let i1 = boxNumber * dataCompost.invest.box
+    let i1 = boxNumber * data.Compost.prices.compostBox[1]
     output[3].invest.push(['Composteadores', i1, boxNumber])
     output[3].invest[0][1] = i1
     

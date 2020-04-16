@@ -15,11 +15,11 @@ var data = {
                        'kg/h'],
         
         chipSurface :   ['Superficie zona de molido', 
-                        parseFloat(localStorage.getItem('surface')) || 5, 
+                        parseFloat(localStorage.getItem('chipSurface')) || 5, 
                         'm²'],
         
         chipperPrice :  ['Precio molino', 
-                        parseFloat(localStorage.getItem('price')) || 100000, 
+                        parseFloat(localStorage.getItem('chipperPrice')) || 100000, 
                         '$MXN'],
         
         chippedWhDens : ['Densidad lirio molido',
@@ -58,7 +58,7 @@ var data = {
                                 'min/m3'],
             
             cribbleLombri:      ['Tamizar producto', 
-                                parseFloat(localStorage.getItem('criblleLombri')) || 1,
+                                parseFloat(localStorage.getItem('cribbleLombri')) || 1,
                                 'min/kg'],
         },
         prices: {
