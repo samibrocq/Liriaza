@@ -1,5 +1,5 @@
 // USER INPUTS
-var qLirio = localStorage.getItem('cantidadLirio');
+var qLirio = localStorage.getItem('qLirio');
 var chipMethod = localStorage.getItem('chipMethod');
 var products = localStorage.getItem('products').split(',');
 var percents = localStorage.getItem('percents').split(',');
@@ -151,7 +151,7 @@ function fLombri(proportionLombri,sellingPrice){
      
     //2nd step Lombri-Compost:
     let qinput2 = qinput1 * data.Lombricomposta.massLossPrecomp[1]
-    let volInput2 = qinput2 / data.Lombricomposta.compostDensity[1]
+    let volInput2 = qinput2 / data.Lombricomposta.precompostDensity[1]
     let surface2 = (qinput1 *18/300) * 2 // you need 18m2 for every 300kg/semana, mas el pasillo
     
 
@@ -186,7 +186,7 @@ function fLombri(proportionLombri,sellingPrice){
     //Investments
     let i1 = data.Lombricomposta.prices.preCompostBox[1] * boxNumber,
         i2 = data.Lombricomposta.prices.lombriBed[1] * surface2/2,
-        i3 = data.Lombricomposta.prices.cribbleLombri[1] ;
+        i3 = data.Lombricomposta.prices.cribblerLombri[1] ;
     
     output[0].invest.push(['Cajas de pre-compost', i1, boxNumber ])
     output[0].invest.push(['Camas de lombrices', i2, Math.round(surface2/2) + ' m²'])

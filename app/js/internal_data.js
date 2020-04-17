@@ -2,7 +2,9 @@
 
 var data = {
     Cosecha : {
-        harvestYield : ['Rendimiento cosecha' , parseFloat(localStorage.getItem('harvestYield')) || 300 , 'kg/h' ]
+        harvestYield : ['Rendimiento cosecha' , 
+                        parseFloat(localStorage.getItem('harvestYield')) || 300 ,
+                        'kg/h' ]
     },
     
     Molido : {
@@ -36,8 +38,8 @@ var data = {
                            parseFloat(localStorage.getItem('massLossCompost')) || 0.3,
                            ''], 
         
-        compostDensity : ['Densidad compost húmedo', 
-                          parseFloat(localStorage.getItem('compostDensity')) || 600,
+        precompostDensity : ['Densidad pre-compost húmedo', 
+                          parseFloat(localStorage.getItem('precompostDensity')) || 600,
                           'kg/m3'],
         hours : {
             
@@ -70,8 +72,8 @@ var data = {
                             parseFloat(localStorage.getItem('lombriBed')) || 100,
                             '$MXN /m²'],
             
-            cribbleLombri:  ['Tamiz',
-                            parseFloat(localStorage.getItem('cribbleLombri')) || 400,
+            cribblerLombri:  ['Tamiz',
+                            parseFloat(localStorage.getItem('cribblerLombri')) || 400,
                             '$MXN'],
         },
     },
@@ -199,169 +201,3 @@ var data = {
     }
 }
 
-
-/*
-var data = {
-    Cosecha : {
-        harvestYield : ['Rendimiento cosecha' , 300 , 'kg/h' ]
-    },
-    
-    Molido : {
-        chipperYield : ['Rendimiento molino', 100, 'kg/h'],
-        manualYield : ['Rendimiento corte manual', 60, 'kg/h'],
-        surface : ['Superficie zona de molido' , 5, 'm²'],
-        price : ['Precio molino', 100000, '$MXN'],
-        chippedwhDensity : ['Densidad lirio molido', 300, 'kg/m3'],    
-    },
-    
-    Lombricomposta : {
-        massLossPrecompost : ['Masa final / Masa inicial precomposteo', 0.5, ''],
-        massLossCompost : ['Masa final / Masa inicial lombri-composteo', 0.3, ''], 
-        compostDensity : ['Densidad compost húmedo', 600, 'kg/m3'],
-        hours : {
-            fillPrecompost : ['LLenar cajas precompost', 60, 'min/m3'],
-            movePrecompost : ['Remover precompost', 60, 'min/m3'],
-            fillLombricompost : ['Llenar cama lombrices', 60, 'min/m3'],
-            dry : ['Secar producto', 60, 'min/m3'],
-            cribble: ['Tamizar producto', 1, 'min/kg'],
-        },
-        prices: {
-            preCompostBox : ['Caja de pre-composteo',400, '$MXN'],
-            LombriBed : ['Cama de lombrices',100, '$MXN /m²'],
-            cribble: ['Tamiz', 400, '$MXN'],
-        }
-    },
-    
-    Secado : {
-        massLoss: ['Masa final / Masa inicial', 0.10, ''],
-        whBoardDensity : ['Densidad lirio sobre charolas', 5, 'kg/m²'],
-        hours : {
-            fillDryer : ['Llenar secador', 100, 'kg/h'],
-            emptyDryer : ['Vaciar secador', 10, 'kg/h'],
-        },
-        prices : {
-            house : ['Secador', 400, '$MXN/m²'],
-            grinder : ['Molino fino', 5000,  '$MXN']
-        } ,   
-    },
-    
-    Biogás :{
-        RhaleCapacity : ['Volumen reactor RHALE', 6, 'L/m3 lirio diario'],
-        UasbCapacity : ['Volumen reactor UASB', 5, 'L/m3 lirio diario'],
-        UasbYield : ['Rendimiento UASB', 1, 'Lgás/día /Lreactor'],
-        biogasHeatingCapacity : ['Capacidad calorífica biogás', 6, 'kWh/m3'],
-        surfaceExtractor : ['Superficie extractor de líquido', 5, 'm²'],
-        hours : {
-            liquidExtraction : ['Extracción de líquido', 100, 'kg/h'],
-            feedUASB : ['Alimentar reactor UASB', 0.1, 'min/kg'],
-            feedRHALE : ['Alimentar reactor RHALE', 0.1, 'min/kg'],
-        },
-        prices : {
-            liquidExtractor : ['Extractor de líquidos', 10000,'$MXN'],
-            rhale : ['Reactor RHALE', 4000, '$MXN'],
-            uasb : ['Reactor UASB', 6000, '$MXN'],
-            tent : ['Carpa', 3000, '$MXN'],
-            gasBag : ['Bolsa de gás', 3000, '$MXN'],        
-        }   
-    },
-    
-    Compost : {
-        compostDensity : ['Densidad compost húmedo', 6000, 'kg/m3'],
-        massLoss : ['Masa final / Masa inicial', 0.15, ''], 
-        hours : {
-            fillBox : ['LLenar caja de composteo', 60, 'min/m3'],
-            moveCompost : ['Remover compost', 60, 'min/m3'],
-            dry : ['Secar producto', 60, 'min/m3'],
-            cribble : ['Tamizar producto', 0.5, 'min/kg'],  //mas rapido que lombri porque no gusanos
-        },
-        prices : {
-            box : ['Composteador', 400, '$MXN'],
-        }
-    }
-}
-
-*/
-
-/*
-var dataHarvest = {
-    harvestYield : ['Rendimiento de la cosecha' , 300 , 'kg/h' ]
-}
-
-var dataChipping = {
-    chipperYield : 100, //kg/h
-    manualYield : 60, //kg/h
-    surface : 5, //m2
-    price : 100000, //$MXN
-    chippedwhDensity : 300 //kg/m3 Densidad del lirio molido
-}
-
-var dataLombri = {
-    massLossPrecompost : 0.5,
-    massLossCompost : 0.3,
-    compostDensity : 600, //kg/m3
-    hours : {
-        fillPrecompost : 60, // min/m3
-        movePrecompost : 60,//min/m3
-        fillLombricompost : 60, //min/m3
-        dry : 60, //min/m3
-        cribble: 1, //min/kg
-    },
-    prices: {
-        preCompostBox :400, //$MXN
-        LombriBed : 100, //MXN/m2
-        cribble:400 //MXN
-    }  
-}
-
-
-var dataDrying = {
-    massLoss:0.10,
-    whBoardDensity : 5, //kg/m2
-    hours : {
-        fillDryer : 100, //kg/hour
-        emptyDryer : 10, //kg/h
-    },
-    invest : {
-        house : 400, //$mxn/m2
-        grinder : 5000 //$mxn
-    }    
-}
-
-var dataGas = {
-    RhaleCapacity : 6, // L reactor/ m3 lirio procesado diario
-    UasbCapacity : 5, // L reactor/ m3 lirio procesado diario
-    UasbYield : 1, //kWh diario /L reactor
-    biogasHeatingCapacity : 6, //kWh/m3
-    surface : {
-        extractor : 5 //m2
-    },
-    hours : {
-       liquidExtraction : 100, // kg/h lirio entero
-       feedUASB : 0.1, //min/kg
-       feedRHALE : 0.1, //min/kg 
-    },
-    invest : {
-        liquidExtractor : 10000, //$SMXN
-        rhale : 2000,
-        uasb : 4000,
-        tent : 3000,
-        gasBag : 3000        
-    }   
-}
-
-
-var dataCompost = {
-    compostDensity : 6000, //kg/m3
-    massLoss : 0.15, 
-    hours : {
-        fillBox : 60, // min/m3
-        moveCompost : 60, //min/m3
-        dry : 60, //min/m3
-        cribble : 0.5, //min/kg   mas rapido que lombri porque no gusanos
-    },
-    invest : {
-        box : 400 // $ MXN
-    }
-}
-
-*/
