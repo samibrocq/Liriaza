@@ -1,0 +1,45 @@
+.newSim{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left:5%;
+    margin-top : 5% ; margin-bottom: 5%;
+    margin-left: 10%;
+}
+
+.newSim i {
+    margin-right: 1em;
+}
+
+.savedSim{
+    margin-left:10%; margin-right: 10%;
+    border : 1px solid black;
+    border-radius: 2em;
+    padding: 2% 5% 5% 5%;
+}
+
+.savedSimRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+    margin-top: 2em;
+}
+
+.savedSimRow:hover{
+    background-color: #f5f5f5;
+}
+
+.savedSimrow .icons{
+    justify-content: flex-end;
+}
+
+.savedSimRow .fa-edit {
+    margin-right: 1em;
+}
+
+i{
+    cursor:pointer;
+}
