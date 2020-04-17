@@ -48,9 +48,9 @@
 
     <script>
         
+         var savedSim = document.querySelector('.savedSim')
+         
      function createRow (name) {
-           
-           var savedSim = document.querySelector('.savedSim')
         
            let row = document.createElement('div')
            row.setAttribute('class','savedSimRow')
@@ -86,6 +86,12 @@
         
     for (let h=0 ; h< saves.length ; h++){
         createRow(saves[h][0]) 
+    }
+        
+    if(saves.length == 0) {
+        const p = document.createElement('p')
+        p.textContent = 'No hay ninguna'
+        savedSim.append(p)
     }
         
         
