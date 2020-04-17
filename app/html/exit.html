@@ -38,17 +38,24 @@
     <a href="set_data.html">
         <div class="form-group">
             <i class="fas fa-cog"></i>
-             <p>Ver / cambiar las hipotesis de cálculo</p>
+             <p>Parámetros</p>
         </div>
     </a>
     
-     <a href="../../html/simulador.html">
-        <div class="form-group">
-                    <i class="fas fa-door-open"></i>
-                    <p>Salir</p>
-
+    <a href=''>
+        <div class="form-group" id='saveButton'>
+                    <i class="fas fa-save"></i>
+                    <p>Guardar</p>
         </div>
     </a>
+    
+     <a href="home.html">
+        <div class="form-group">
+                    <i class="fas fa-home"></i>
+                    <p>Inicio</p>
+        </div>
+    </a>
+    
 
     <a href="results_general.html"> 
         <div class="form-group">
@@ -57,11 +64,63 @@
          </div>
     </a>
 
-
+ <!--
     <script src="../js/JQuery/jquery-3.3.1.min.js"></script>
     <script src="../js/Bootstrap/bootstrap.min.js"></script>
-    <script src="../js/Bootstrap/bootstrap.bundle.js"></script>
+    <script src="../js/Bootstrap/bootstrap.bundle.js"></script>  -->
     <script src="../js/main.js"></script>
+    <script src="../js/internal_data.js"></script>
+    <script src="../js/simulador.js"></script>
+    <script>
+        
+        let saveButton = document.getElementById('saveButton')
+       
+         
+    
+        
+        
+        saveButton.addEventListener('click', function() {
+        
+        const dataTable = []
+         for(let [key1, value1] of Object.entries(data)) {
+             for(let[key2,value2] of Object.entries(value1)){
+                 if(value2.hasOwnProperty('length')) {
+                     dataTable.push([key2,value2[1]])
+                 }
+                 else {
+                     for(let[key3,value3] of Object.entries(value2)) {
+                         dataTable.push([key3,value3[1]])
+                     }
+                 }
+             }         
+          }    
+            
+    
+          let name = window.prompt('Nombre de la simulación')  
+          
+          let newSave = [         
+              name,
+              qLirio,
+              chipMethod,
+              products,
+              percents,
+              sellOption,
+              prices,
+              dataTable
+                ]  ; 
+          
+            saves.push(newSave)
+
+           let savesString = JSON.stringify(saves)
+
+           localStorage.setItem('savesString', savesString)
+            
+            
+        });
+    
+    </script>
+
+ 
 
     
 </body>

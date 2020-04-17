@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- css -->
+   <!--  <link rel="stylesheet" href="../css/Bootstrap/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style_details.css">
+    <link rel="stylesheet" href="../css/home.css">
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/f9136cac43.js" crossorigin="anonymous"></script>
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
+    rel="stylesheet">
+
+
+    <title>Simulador</title>
+</head>
+
+<body>
+
+    <section class='newSim'>
+        <a href='quantity.html' id='newSimButton'>
+            <i class='fas fa-plus-circle'></i></a>
+        <h1>Nueva simulación</h1>
+        
+    </section>
+    
+    <section class='savedSim'> 
+        <h1>Simulaciones guardadas</h1>
+        
+    </section>
+    
+      <div class='arrows'>
+                <a href="../../html/simulador.html"> <i class="fas fa-chevron-left"></i></a> 
+    </div>
+    
+    
+    
+    <script src="../js/main.js"></script>
+
+    <script>
+        
+     function createRow (name) {
+           
+           var savedSim = document.querySelector('.savedSim')
+        
+           let row = document.createElement('div')
+           row.setAttribute('class','savedSimRow')
+           savedSim.append(row)
+           
+           let nameCell = document.createElement('div')
+           nameCell.textContent = name
+           row.append(nameCell)
+         
+           let icons = document.createElement('div')
+           icons.setAttribute('class','icons')
+           row.append(icons)
+            
+           let editButton = document.createElement('a')
+           editButton.setAttribute('href','quantity.html')
+           editButton.setAttribute('class','edit')
+           editButton.setAttribute('id', name)
+         
+           let editIcon = document.createElement('i')
+           editIcon.setAttribute('class','far fa-edit')
+           
+           icons.append(editButton) ; editButton.append(editIcon)
+           
+           let removeButton = document.createElement('a')
+           removeButton.setAttribute('href','')
+           removeButton.setAttribute('class','remove')
+           removeButton.setAttribute('id', name)
+         
+           let removeIcon = document.createElement('i')
+           removeIcon.setAttribute('class','far fa-trash-alt')
+           icons.append(removeButton) ; removeButton.append(removeIcon)          
+       }
+        
+    for (let h=0 ; h< saves.length ; h++){
+        createRow(saves[h][0]) 
+    }
+        
+        
+   // New simulation
+   const newSimButton = document.getElementById('newSimButton')
+   newSimButton.addEventListener('click', function(){
+       localStorage.clear();
+   })
+   
+   //Edit
+   const editButtons = document.querySelectorAll('.edit')
+   
+   for(let i=0; i<editButtons.length ; i++) {
+       editButtons[i].addEventListener('click', function(){
+           for(let j=0; j<saves.length ; j++) {
+                if( saves[j][0] == editButtons[i].id) {
+                    
+                    localStorage.setItem('qLirio', saves[j][1])
+                    localStorage.setItem('chipMethod', saves[j][2])
+                    localStorage.setItem('products', saves[j][3])
+                    localStorage.setItem('percents', saves[j][4])
+                    localStorage.setItem('sellOption' , saves[j][5])
+                    localStorage.setItem('prices', saves[j][6])
+                    
+                    for( let k=0; k<saves[j][7].length ; k++){
+                    localStorage.setItem(saves[j][7][k][0],saves[j][7][k][1])
+                    }
+                }
+           }
+       })
+   }
+    
+   //Remove        
+    const removeButtons = document.querySelectorAll('.remove')
+        
+    for (let i= 0 ; i<removeButtons.length ;i++) {
+        removeButtons[i].addEventListener('click', function(){
+            for(let j=0; j<saves.length ; j++) {
+                if(saves[j][0] = removeButtons[i].id) {
+                    saves.splice(j,1)
+                    let savesString = JSON.stringify(saves)
+                    localStorage.setItem('savesString', savesString)
+                }
+            }
+        });
+    }
+     
+    
+    </script>
+
+</body>
+</html>

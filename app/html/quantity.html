@@ -46,7 +46,7 @@
                 <div class="arrows">
               
               
-                    <a href="../../html/simulador.html"><i class="fas fa-chevron-left"></i></a>
+                    <a href="home.html"><i class="fas fa-chevron-left"></i></a>
             
                     <div class="infobubble-bottom"
                          label = "1m3 de lirio recien cosechado pesa approx. 150kg">
@@ -71,24 +71,24 @@
         
         miStorage = window.localStorage;
         var next = document.getElementById('next');
-        var cantidadLirio = localStorage.getItem('cantidadLirio')
-        if(cantidadLirio == null) {cantidadLirio=""}
+        var qLirio = localStorage.getItem('qLirio')
+        if(qLirio == null) {qLirio=""}
 
         var names = ['Lombricomposta', 'Secado', 'Biogás', 'Composta']
         localStorage.setItem('names',names)
         
         //auto-fill input
         var input = document.getElementById('input')
-        input.setAttribute('value', cantidadLirio)
+        input.setAttribute('value', qLirio)
         
 
 
 
         next.addEventListener('click', function () {
 
-            var cantidadLirio = document.getElementById('input').value;
+            var qLirio = document.getElementById('input').value;
 
-            localStorage.setItem('cantidadLirio', cantidadLirio);
+            localStorage.setItem('qLirio', qLirio);
 
         })
     </script>
