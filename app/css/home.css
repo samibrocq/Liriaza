@@ -19,6 +19,11 @@
     padding: 2% 5% 5% 5%;
 }
 
+.savedSim p {
+    text-align: left;
+    padding-top:1em;
+}
+
 .savedSimRow{
     display: flex;
     flex-direction: row;
