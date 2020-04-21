@@ -308,6 +308,8 @@ function fCompost(proportion, sellingPrice) {
         prod = (qInput * 4) * data.Compost.compostMassLoss[1] , //per month
         prodVolume = prod / data.Compost.compostDensity[1];
     
+    console.log(proportion)
+    
     //Surface
     let surface = boxNumber * 1 * 2 // m2 (con el espacio de circulacion)
     output[3].surface.push(['Composteadores',surface])
@@ -337,16 +339,14 @@ function fCompost(proportion, sellingPrice) {
     output[3].gain = prod * 12 * sellingPrice
 }
 
-if(products[3] == 'true') { fCompost(percents[2], prices[3])}
+if(products[3] == 'true') { fCompost(percents[3], prices[3])}
 
 // totals
 for (let i=0;i<6;i++){
     output[6].surface[0][1] += output[i].surface[0][1]  //superficie adicional = superficie de los equipos
-
     output.total.invest += output[i].invest[0][1]
+    output[6].hours[0][1] += 0.3 * output[i].hours[0][1]  //tiempo adicional (limpieza..) +30% del tiempo de operacion
 }
-
-output[6].hours[0][1] += 4*5  //estimacion 3h por dia en promedia
 
 for (let i=0;i<7;i++){
     output.total.surface += output[i].surface[0][1] 
